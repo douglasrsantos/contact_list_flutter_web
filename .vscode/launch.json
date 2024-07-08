@@ -1,0 +1,28 @@
+{
+    "version": "0.1.0",
+    "configurations": [
+        {
+            "name": "DEVELOPMENT",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define-from-file=.env/development.json",
+                "-d",
+                "chrome",
+                "--web-browser-flag=--disable-web-security"
+            ],
+            "flutterMode": "debug"
+        },
+        {
+            "name": "PRODUCTION",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--dart-define=API_URL=$(cat .env/production.json | jq -r '.baseUrl')"
+            ],
+            "flutterMode": "release"
+        },
+    ]
+}
